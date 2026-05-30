@@ -3,6 +3,7 @@ import { useLanguageStore } from '../stores/useLanguageStore';
 import { useThemeStore } from '../stores/useThemeStore';
 import { useCartStore } from '../stores/useCartStore';
 import { useAuthStore } from '../stores/useAuthStore';
+import { useSearchStore } from '../stores/useSearchStore';
 
 // Backward compatibility - export stores as hooks
 export const useLanguage = () => {
@@ -30,6 +31,12 @@ export const useAuth = () => {
   const user = useAuthStore((state) => state.user);
   const setUser = useAuthStore((state) => state.setUser);
   return { user, setUser };
+};
+
+export const useSearch = () => {
+  const query = useSearchStore((state) => state.query);
+  const setQuery = useSearchStore((state) => state.setQuery);
+  return { query, setQuery };
 };
 
 // Providers no longer needed with Zustand, but keeping for backward compatibility

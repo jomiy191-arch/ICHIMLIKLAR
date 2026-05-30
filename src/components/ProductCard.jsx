@@ -31,10 +31,21 @@ const ProductCard = ({ product }) => {
     coffee: '☕',
   };
 
+  // Resolve local asset paths to proper URLs for Vite build
+  const images = import.meta.glob('../assets/*.{jpg,jpeg,png}', { eager: true, query: '?url', import: 'default' });
+  const resolveImage = (imgPath) => {
+    if (!imgPath) return '';
+    if (imgPath.startsWith('/src/assets/')) {
+      const key = imgPath.replace('/src/assets/', '../assets/');
+      return images[key] || imgPath;
+    }
+    return imgPath;
+  };
+
   return (
     <div className={`product-card ${isDark ? 'dark' : 'light'}`}>
       <div className="product-image-wrapper">
-        <img src={product.image} alt={name} className="product-image" />
+        <img src={resolveImage(product.image)} alt={name} className="product-image" />
         <button
           className={`like-btn ${isLiked ? 'liked' : ''}`}
           onClick={() => toggleLike(product.id)}

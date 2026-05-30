@@ -1,37 +1,36 @@
 .product-card {
-  background: white;
-  border-radius: 15px;
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  border-radius: 12px;
   overflow: hidden;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  display: flex;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   flex-direction: column;
   cursor: pointer;
   border: 2px solid transparent;
 }
 
 .product-card.dark {
-  background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+  background: linear-gradient(135deg, #1a2f5a 0%, #0f1729 100%);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  color: #fff;
+  color: #e0e8f0;
 }
 
 .product-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(255, 107, 107, 0.25);
-  border-color: #ff6b6b;
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(18, 18, 18, 0.12);
+  border-color: rgba(0,0,0,0.04);
 }
 
 .product-image-wrapper {
   position: relative;
   width: 100%;
-  height: 250px;
+  height: 200px;
   overflow: hidden;
   background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
 }
 
 .product-card.dark .product-image-wrapper {
-  background: linear-gradient(135deg, #333 0%, #222 100%);
+  background: linear-gradient(135deg, #2a4a8a 0%, #1a2f5a 100%);
 }
 
 .product-image {
@@ -83,13 +82,13 @@
   position: absolute;
   top: 12px;
   left: 12px;
-  background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+  background: rgba(255, 107, 107, 0.95);
   color: white;
-  padding: 0.5rem 0.9rem;
-  border-radius: 20px;
-  font-size: 0.85rem;
+  padding: 0.32rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
   font-weight: 700;
-  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.18);
 }
 
 .product-info {
@@ -99,11 +98,12 @@
   flex-direction: column;
   background: white;
   color: #1a1a1a;
+  min-width: 0;
 }
 
 .product-card.dark .product-info {
-  background: rgba(42, 42, 42, 0.95);
-  color: #fff;
+  background: rgba(26, 47, 90, 0.6);
+  color: #e0e8f0;
 }
 
 .product-name {
@@ -122,49 +122,58 @@
 }
 
 .product-card.dark .product-description {
-  color: #ccc;
-  opacity: 0.9;
+  color: #b0c4e8;
+  opacity: 0.85;
 }
 
 .product-footer {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
+  align-items: stretch;
+  gap: 0.6rem;
   margin-top: auto;
-  padding-top: 1rem;
-  border-top: 1px solid #eee;
+  padding: 0.9rem 0 0 0;
+  border-top: none;
+  flex-wrap: nowrap;
 }
 
 .product-card.dark .product-footer {
-  border-top-color: #444;
+  border-top-color: rgba(100, 180, 255, 0.2);
 }
 
 .product-price {
-  font-size: 1.4rem;
+  font-size: 1.05rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #ff4f60;
+  flex: 0;
+  white-space: nowrap;
+  text-align: center;
+  margin-right: 0;
 }
+
 
 .add-to-cart-btn {
   flex: 1;
-  padding: 0.9rem;
-  background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.52rem 0.7rem;
+  background: #ff4f60;
   color: white;
   border: none;
   border-radius: 10px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 0.95rem;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  font-size: 0.88rem;
+  white-space: nowrap;
 }
 
 .add-to-cart-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(255, 79, 96, 0.18);
 }
 
 .add-to-cart-btn:active {
@@ -199,7 +208,7 @@
   }
 
   .product-image-wrapper {
-    height: 200px;
+    height: 160px;
   }
 
   .product-info {
@@ -207,7 +216,18 @@
   }
 
   .product-price {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+  }
+
+  .add-to-cart-btn {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.88rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .product-image-wrapper {
+    height: 190px;
   }
 }
 

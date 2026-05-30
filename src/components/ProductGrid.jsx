@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLanguage, useTheme, useCart } from '../context/AppContext';
+import { useLanguage, useTheme, useCart, useSearch } from '../context/AppContext';
 import { translations } from '../i18n/translations';
 import ProductCard from './ProductCard';
 import { products } from '../data/products';
@@ -10,6 +10,7 @@ const ProductGrid = () => {
   const { isDark } = useTheme();
   const { likedItems } = useCart();
   const t = translations[language];
+  const { query } = useSearch();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showOnlyLiked, setShowOnlyLiked] = useState(false);
 
@@ -29,6 +30,15 @@ const ProductGrid = () => {
 
   if (showOnlyLiked) {
     filteredProducts = filteredProducts.filter(p => likedItems.includes(p.id));
+  }
+
+  if (query && query.trim() !== '') {
+    const q = query.toLowerCase();
+    filteredProducts = filteredProducts.filter((p) => {
+      const name = p[`name${language === 'uz' ? 'Uz' : language === 'en' ? 'En' : 'Ru'}`] || '';
+      const desc = (p.description || '').toLowerCase();
+      return name.toLowerCase().includes(q) || desc.includes(q);
+    });
   }
 
   return (

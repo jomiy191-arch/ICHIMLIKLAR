@@ -19,6 +19,17 @@ const Cart = () => {
     setShowOrderModal(true);
   };
 
+  // resolve images for production builds (use Vite's import.meta.glob)
+  const images = import.meta.glob('../assets/*.{jpg,jpeg,png}', { eager: true, query: '?url', import: 'default' });
+  const resolveImage = (imgPath) => {
+    if (!imgPath) return '';
+    if (imgPath.startsWith('/src/assets/')) {
+      const key = imgPath.replace('/src/assets/', '../assets/');
+      return images[key] || imgPath;
+    }
+    return imgPath;
+  };
+
   return (
     <>
       <div className={`cart-drawer ${isDark ? 'dark' : 'light'}`}>
@@ -31,9 +42,9 @@ const Cart = () => {
           {cartItems.length === 0 ? (
             <p className="empty-cart">📭 {t.empty}</p>
           ) : (
-            cartItems.map(item => (
+            cartItems.map((item) => (
               <div key={item.id} className="cart-item">
-                <img src={item.image} alt={item.nameUz} />
+                <img src={resolveImage(item.image)} alt={item.nameUz} />
                 <div className="item-details">
                   <h4>{item.nameUz}</h4>
                   <p className="item-price">💰 {item.price.toLocaleString()} сўм</p>

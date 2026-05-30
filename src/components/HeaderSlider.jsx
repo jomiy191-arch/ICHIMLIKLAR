@@ -2,13 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useTheme } from '../context/AppContext';
 import './HeaderSlider.css';
 
-const images = [
-  '/src/assets/heroga1.jpg',
-  '/src/assets/heroga2.jpg',
-  '/src/assets/heroga3.jpg',
-  '/src/assets/heroga4.jpg',
-  '/src/assets/heroga5.jpg',
-];
+// Load header images via Vite so they resolve correctly after build
+const _imgs = import.meta.glob('../assets/heroga*.jpg', { eager: true, query: '?url', import: 'default' });
+const images = Object.values(_imgs).slice(0, 5);
 
 const HeaderSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -67,7 +63,7 @@ const HeaderSlider = () => {
         </div>
 
         <div className="slider-content">
-          <h2>🎉 Mazali Ichimliklar Katalogi</h2>
+          <h2> Mazali Ichimliklar Katalogi</h2>
           <p>Toza, tabiiy va sog'lom ichimliklar</p>
         </div>
       </div>

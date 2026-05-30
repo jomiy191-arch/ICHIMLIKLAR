@@ -5,8 +5,8 @@
 }
 
 .product-grid-section.dark {
-  background: #1a1a1a;
-  color: #fff;
+  background: #0f1729;
+  color: #e0e8f0;
 }
 
 .product-grid-section.light {
@@ -77,7 +77,7 @@
 }
 
 .product-grid-section.dark .empty-message {
-  color: #aaa;
+  color: #9db3d1;
 }
 
 .filter-btn {
@@ -92,9 +92,9 @@
 }
 
 .product-grid-section.dark .filter-btn {
-  background: #2a2a2a;
-  border-color: #444;
-  color: #fff;
+  background: rgba(100, 180, 255, 0.08);
+  border-color: rgba(100, 180, 255, 0.2);
+  color: #e0e8f0;
 }
 
 .filter-btn:hover {
@@ -116,8 +116,8 @@
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
   animation: slideUp 0.5s ease;
 }
 
@@ -134,8 +134,8 @@
 
 @media (max-width: 1024px) {
   .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.25rem;
   }
 }
 
@@ -167,6 +167,7 @@
 @media (max-width: 480px) {
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 0.9rem;
   }
 
   .filter-btn {

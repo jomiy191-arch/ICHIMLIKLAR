@@ -56,7 +56,7 @@ body {
 }
 
 html.dark .footer {
-  background: #0a0a0a;
+  background: #0f1729;
 }
 
 /* Scrollbar styling */
@@ -70,7 +70,7 @@ html.dark .footer {
 }
 
 html.dark ::-webkit-scrollbar-track {
-  background: #1a1a1a;
+  background: #1a2847;
 }
 
 ::-webkit-scrollbar-thumb {
