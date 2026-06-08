@@ -10,6 +10,12 @@ const ProductGrid = () => {
   const { isDark } = useTheme();
   const { likedItems } = useCart();
   const t = translations[language];
+  const images = import.meta.glob('../assets/*.{jpg,jpeg,png}', { eager: true, query: '?url', import: 'default' });
+  const resolveImage = (imgPath) => {
+    if (!imgPath) return '';
+    const key = imgPath.startsWith('/src/assets/') ? imgPath.replace('/src/assets/', '../assets/') : imgPath;
+    return images[key] || imgPath;
+  };
   const { query } = useSearch();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showOnlyLiked, setShowOnlyLiked] = useState(false);
@@ -41,11 +47,35 @@ const ProductGrid = () => {
     });
   }
 
+  const promoProduct = products.find(p => p.category === 'juice') || products[0];
+  const promoImage = resolveImage(promoProduct.image);
+
   return (
     <div className={`product-grid-section ${isDark ? 'dark' : 'light'}`}>
-      <h2 className="section-title">📋 {t.categories}</h2>
+      <div className="promo-header">
+        <div>
+          <span className="promo-tag">Yozgi chegirmalar</span>
+          <h2 className="section-title">Haftaning eng zo‘r takliflari</h2>
+        </div>
+        <div className="promo-timer">
+          <span>47</span><span>:</span><span>48</span><span>:</span><span>35</span>
+        </div>
+      </div>
 
-      <div className="filter-controls">
+      <div
+        className="promo-banner"
+        style={{
+          backgroundImage: `linear-gradient(rgba(19, 20, 39, 0.45), rgba(19, 20, 39, 0.15)), url(${promoImage})`,
+        }}
+      >
+        <div className="promo-banner-text">
+          <p>Haftaning barcha foydali takliflari bitta to‘plamda</p>
+          <h3>10% gacha chegirmalar</h3>
+        </div>
+        <div className="promo-cta">Tez yetkazib berish</div>
+      </div>
+
+      <div className="filter-controls compact">
         <div className="category-filter">
           {categories.map(cat => (
             <button

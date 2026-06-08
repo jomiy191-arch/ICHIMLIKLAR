@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLanguage, useTheme, useAuth } from '../context/AppContext';
 import { translations } from '../i18n/translations';
 import './Login.css';
+import Register from './Register'
 
 const Login = ({ onClose }) => {
   const { language } = useLanguage();
@@ -10,6 +11,7 @@ const Login = ({ onClose }) => {
   const t = translations[language];
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showRegister, setShowRegister] = useState(false)
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -56,11 +58,13 @@ const Login = ({ onClose }) => {
 
         <div className="login-footer">
           <p className="forgot-password">❓ {t.forgotPassword}</p>
-          <p className="signup-link">➕ {t.signup}</p>
+          <p className="signup-link" onClick={() => setShowRegister(true)}>➕ {t.signup}</p>
         </div>
       </div>
+      {showRegister && <Register onClose={() => setShowRegister(false)} />}
     </div>
   );
 };
 
 export default Login;
+

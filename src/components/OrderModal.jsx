@@ -49,11 +49,32 @@ const OrderModal = ({ cartItems, total, onClose }) => {
       if (success) {
         setOrderSuccess(true);
         setUser({ name: formData.name, email: formData.email });
-        
+        // persist order locally so user can see order history in profile
+        try {
+          const existing = JSON.parse(localStorage.getItem('orders') || '[]');
+          const orderId = `ORD-${Date.now().toString().slice(-6)}-${Math.floor(Math.random()*900+100)}`;
+          const newOrder = {
+            id: orderId,
+            createdAt: new Date().toISOString(),
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            address: formData.address,
+            items: cartItems.map(i => ({ id: i.id, name: i.nameUz, qty: i.quantity, price: i.price })),
+            total,
+            status: 'new'
+          };
+          existing.unshift(newOrder);
+          localStorage.setItem('orders', JSON.stringify(existing));
+        } catch (e) {
+          console.error('Order save error', e);
+        }
+
         setTimeout(() => {
           onClose();
-          window.location.reload();
-        }, 2000);
+          // don't force full reload; if app expects reload earlier, uncomment next line
+          // window.location.reload();
+        }, 1200);
       } else {
         alert('❌ Buyurtmani jo\'natishda xatolik yuz berdi!');
       }

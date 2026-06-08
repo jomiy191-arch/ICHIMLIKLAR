@@ -1,0 +1,48 @@
+.modern-slider-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.modern-slider-track {
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding-block: 12px;
+}
+
+.modern-slider-track.dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+
+.modern-slide {
+  flex: 0 0 auto;
+  width: clamp(160px, 28%, 320px);
+  background: var(--card-bg, #fff);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: transform 300ms ease, box-shadow 300ms ease, opacity 400ms ease;
+}
+
+.modern-slide img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+.modern-slide .slide-body {
+  padding: 12px;
+}
+
+.modern-slide h4 { margin: 0 0 6px 0; font-size: 1rem }
+.modern-slide p { margin: 0; font-size: 0.9rem; color: #666 }
+
+.modern-slide:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 22px 44px rgba(0,0,0,0.12), 0 6px 30px rgba(255,62,95,0.08);
+}
+

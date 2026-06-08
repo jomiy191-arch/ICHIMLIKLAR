@@ -9,6 +9,19 @@ const ProductCard = ({ product }) => {
   const { isDark } = useTheme();
   const { addToCart, likedItems, toggleLike } = useCart();
   const t = translations[language];
+  const btnRef = React.useRef(null);
+
+  const handleAdd = (product) => {
+    const btn = btnRef.current;
+    if (btn) {
+      btn.classList.remove('ripple');
+      // trigger reflow
+      void btn.offsetWidth;
+      btn.classList.add('ripple');
+      setTimeout(() => btn.classList.remove('ripple'), 700);
+    }
+    addToCart(product);
+  };
 
   const name = product[`name${language === 'uz' ? 'Uz' : language === 'en' ? 'En' : 'Ru'}`];
   const isLiked = likedItems.includes(product.id);
@@ -65,8 +78,9 @@ const ProductCard = ({ product }) => {
         <div className="product-footer">
           <span className="product-price">💰 {product.price.toLocaleString()} сўм</span>
           <button
+            ref={btnRef}
             className="add-to-cart-btn"
-            onClick={() => addToCart(product)}
+            onClick={() => handleAdd(product)}
             title={t.addToCart}
           >
             🛒 {t.addToCart}

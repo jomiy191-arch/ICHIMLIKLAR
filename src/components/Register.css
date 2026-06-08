@@ -1,0 +1,37 @@
+.register-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.register-container {
+  width: 92%;
+  max-width: 520px;
+  background: white;
+  padding: 2.4rem;
+  border-radius: 16px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.register-modal.dark .register-container {
+  background: linear-gradient(180deg,#111827,#0b1224);
+  color: var(--text, #e6eef8);
+}
+
+.register-container h2 { text-align:center; margin: 0 0 1.2rem 0 }
+.form-row { display:flex; flex-direction:column; gap:0.35rem; margin-bottom:0.9rem }
+.form-row input { padding:0.9rem; border-radius:10px; border:1.5px solid #e6e6e6 }
+.location-row { position:relative }
+.location-row .loc-btn { position:absolute; right:8px; top:6px; padding:0.5rem 0.8rem; border-radius:8px; background:var(--accent, #ff3e5f); color:white; border:none; cursor:pointer }
+.register-submit { margin-top:0.6rem; width:100%; padding:0.9rem; border-radius:12px; background:linear-gradient(135deg,var(--accent-2,#ff6b6b),var(--accent,#ff3e5f)); color:white; border:none; font-weight:700 }
+.close-btn { position:absolute; right:12px; top:12px; background:none; border:none; font-size:1.2rem; cursor:pointer }
+
+@media (max-width:480px) {
+  .register-container { padding:1.2rem }
+  .location-row .loc-btn { top:8px }
+}

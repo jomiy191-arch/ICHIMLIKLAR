@@ -3,15 +3,17 @@ import { LanguageProvider, ThemeProvider, CartProvider, AuthProvider } from './c
 import Navbar from './components/Navbar'
 import HeaderSlider from './components/HeaderSlider'
 import ProductGrid from './components/ProductGrid'
+import ProductCarousel from './components/ProductCarousel'
 import LikedProducts from './components/LikedProducts'
 import Cart from './components/Cart'
 import Profile from './components/Profile'
 import Partners from './components/Partners'
 import MobileTabNav from './components/MobileTabNav'
+import AdVideoModal from './components/AdVideoModal'
 import './App.css'
 
 function App() {
-  const [activeTab, setActiveTab] = useState('products');
+  const [activeTab, setActiveTab] = useState('home');
 
   return (
     <LanguageProvider>
@@ -20,16 +22,18 @@ function App() {
           <AuthProvider>
             <div className="app">
               <Navbar />
+              <AdVideoModal />
               
               <div className="content-wrapper">
-                {activeTab === 'products' && (
+                {(activeTab === 'home' || activeTab === 'search' || activeTab === 'products') && (
                   <>
                     <HeaderSlider />
+                    <ProductCarousel />
                     <ProductGrid />
                     <Partners />
                   </>
                 )}
-                {activeTab === 'liked' && <LikedProducts />}
+                {activeTab === 'offers' && <LikedProducts />}
                 {activeTab === 'cart' && <Cart />}
                 {activeTab === 'profile' && <Profile />}
               </div>

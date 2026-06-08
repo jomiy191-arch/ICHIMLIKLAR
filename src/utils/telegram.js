@@ -111,6 +111,41 @@ export const notifyOrderStatus = async (orderId, status) => {
   }
 };
 
+export const sendRegistration = async (userInfo = {}, location = {}) => {
+  try {
+    let message = `\n🆕 *Yangi Ro'yxatdan O'tish*\n\n`;
+    message += `👤 *Ism:* ${userInfo.name || 'Noma\'lum'}\n`;
+    message += `📧 *Email:* ${userInfo.email || 'Kiritilmagan'}\n`;
+    message += `📱 *Telefon:* ${userInfo.phone || 'Kiritilmagan'}\n\n`;
+
+    if (location && (location.address || (location.lat && location.lon))) {
+      message += `📍 *Manzil:* ${location.address || 'Aniqlanmadi'}\n`;
+      if (location.lat && location.lon) message += `🧭 *Koordinatalar:* ${location.lat}, ${location.lon}\n`;
+    }
+
+    message += `\n⏰ *Vaqti:* ${new Date().toLocaleString('uz-UZ')}`;
+
+    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        chat_id: CHAT_ID,
+        text: message,
+        parse_mode: 'Markdown',
+      }),
+    });
+
+    const data = await response.json();
+    return data.ok;
+  } catch (error) {
+    console.error('Registration yuborish xatosi:', error);
+    return false;
+  }
+};
+
 export const sendAllProducts = async (products) => {
   try {
     const baseUrl = window.location.origin;

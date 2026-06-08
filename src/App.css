@@ -32,6 +32,9 @@ body {
 .content-wrapper {
   flex: 1;
   width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1rem;
   animation: fadeIn 0.3s ease;
 }
 
@@ -47,16 +50,17 @@ body {
 }
 
 .footer {
-  background: #1a1a1a;
-  color: white;
+  background: var(--bg, #111827);
+  color: var(--text, #fff);
   text-align: center;
   padding: 2rem;
   margin-top: 3rem;
   font-size: 0.9rem;
+  border-top: 4px solid rgba(255,62,95,0.06);
 }
 
 html.dark .footer {
-  background: #0f1729;
+  background: linear-gradient(180deg, rgba(7,16,33,0.8), rgba(4,10,22,0.9));
 }
 
 /* Scrollbar styling */
@@ -80,12 +84,6 @@ html.dark ::-webkit-scrollbar-track {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 
 @keyframes slideUp {
