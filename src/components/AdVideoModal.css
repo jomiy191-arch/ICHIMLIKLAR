@@ -89,7 +89,7 @@
   cursor: pointer;
   width: 18px;
   height: 18px;
-  accent-color: #ff3e5f;
+  accent-color: #e2dcdd;
 }
 
 .ad-buttons {
@@ -99,7 +99,7 @@
 
 .ad-close {
   background: transparent;
-  color: #fff;
+  color: #c34b4b;
   padding: 0.7rem 1.2rem;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.15);
