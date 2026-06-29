@@ -2,16 +2,15 @@ import React, { useEffect, useState } from 'react';
 import './AdVideoModal.css';
 
 export default function AdVideoModal() {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [showAlways, setShowAlways] = useState(false);
 
   useEffect(() => {
     try {
       const hidden = localStorage.getItem('ad_video_seen');
-      if (!hidden) {
-        // show after a small delay so layout is ready
-        const t = setTimeout(() => setVisible(true), 600);
-        return () => clearTimeout(t);
+      // Always show on first load of session, user can disable for future
+      if (hidden && Math.random() > 0.3) {
+        setVisible(false);
       }
     } catch (e) {
       setVisible(true);

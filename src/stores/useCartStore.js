@@ -37,6 +37,20 @@ export const useCartStore = create(
             ? state.likedItems.filter((id) => id !== productId)
             : [...state.likedItems, productId],
         })),
+      
+      updateCartQuantity: (productId, quantity) =>
+        set((state) => {
+          if (quantity <= 0) {
+            return {
+              cartItems: state.cartItems.filter((item) => item.id !== productId),
+            };
+          }
+          return {
+            cartItems: state.cartItems.map((item) =>
+              item.id === productId ? { ...item, quantity } : item
+            ),
+          };
+        }),
     }),
     {
       name: 'cart-storage',

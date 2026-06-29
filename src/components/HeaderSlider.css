@@ -5,11 +5,25 @@
   overflow: hidden;
   position: relative;
   margin-top: 0.8rem;
-  background: radial-gradient(1200px 400px at 10% 10%, rgba(255,62,95,0.06), transparent 6%), var(--bg, #020a16);
+  background: linear-gradient(135deg, rgba(2, 10, 22, 0.95) 0%, rgba(8, 20, 45, 0.92) 30%, rgba(15, 8, 35, 0.94) 100%);
 }
 
 .header-slider.dark {
-  background: #010409;
+  background: linear-gradient(-45deg,
+    rgba(2, 10, 22, 0.98),
+    rgba(8, 25, 55, 0.95),
+    rgba(20, 10, 40, 0.93),
+    rgba(5, 15, 35, 0.96));
+  background-size: 400% 400%;
+  animation: darkBgShift 15s ease infinite;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@keyframes darkBgShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .slider-container {
@@ -38,6 +52,12 @@
   opacity: 1;
   z-index: 1;
   transform: scale(1);
+  animation: slideGlow 1.2s ease both;
+}
+
+@keyframes slideGlow {
+  from { filter: drop-shadow(0 0 0 rgba(255,255,255,0)); }
+  to { filter: drop-shadow(0 20px 40px rgba(255, 62, 95, 0.16)); }
 }
 
 .slide::after {
@@ -102,6 +122,40 @@
   animation: heroFadeUp 720ms cubic-bezier(.2,.9,.2,1);
 }
 
+.header-slider::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: 
+    radial-gradient(circle at top left, rgba(255, 97, 117, 0.25), transparent 22%),
+    radial-gradient(circle at 70% 20%, rgba(71, 156, 255, 0.2), transparent 20%),
+    radial-gradient(circle at bottom right, rgba(138, 43, 226, 0.15), transparent 25%),
+    radial-gradient(circle at 20% 80%, rgba(0, 255, 200, 0.12), transparent 18%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  animation: glowPulse 4.5s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.18;
+    transform: scale(1) translateY(0);
+  }
+  25% {
+    opacity: 0.32;
+    transform: scale(1.01) translateY(-2px);
+  }
+  50% {
+    opacity: 0.48;
+    transform: scale(1.03) translateY(0);
+  }
+  75% {
+    opacity: 0.32;
+    transform: scale(1.01) translateY(2px);
+  }
+}
+
 @keyframes heroFadeUp {
   from { opacity: 0; transform: translate(-50%, -44%); }
   40% { opacity: 1; transform: translate(-50%, -48%); }
@@ -163,6 +217,10 @@
   color: #fff;
 }
 
+.hero-title {
+  animation: titlePop 520ms cubic-bezier(.2,.9,.2,1) 120ms both;
+}
+
 .hero-subtitle {
   z-index: 4;
   margin: 1rem auto 0;
@@ -192,6 +250,15 @@
 .hero-cta:hover {
   transform: translateY(-2px);
   filter: brightness(1.05);
+}
+
+.hero-cta {
+  animation: ctaBounce 3.2s ease-in-out infinite 1.1s;
+}
+
+@keyframes ctaBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
 }
 
 @media (max-width: 1024px) {

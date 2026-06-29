@@ -4,31 +4,154 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0,0,0,0.6);
+  background: rgba(186, 58, 58, 0.7);
   z-index: 9999;
   padding: 1rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .ad-inner {
   width: min(920px, 98%);
   max-width: 920px;
-  background: #0b1220;
-  border-radius: 12px;
+  background: linear-gradient(135deg, #0b1220 0%, #0f1729 100%);
+  border-radius: 16px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
+              0 0 100px rgba(255, 62, 95, 0.1);
+  animation: slideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid rgba(255, 62, 95, 0.2);
 }
 
-.ad-video-wrap { background: black; }
-.ad-video { width: 100%; height: auto; display: block; }
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 
-.ad-controls { padding: 12px; display:flex; align-items:center; justify-content:space-between; gap:12px }
-.ad-checkbox { color: #dfeaff; font-size: 0.95rem }
-.ad-buttons { display:flex; gap:8px }
-.ad-close { background: transparent; color: #fff; padding: 8px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); cursor:pointer }
-.ad-close.primary { background: linear-gradient(135deg,#ff6b6b,#ff3e5f); border:none }
+.ad-video-wrap {
+  background: black;
+  position: relative;
+  overflow: hidden;
+}
+
+.ad-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  animation: zoomIn 0.6s ease;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.98); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.ad-controls {
+  padding: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: linear-gradient(135deg, rgba(11, 18, 32, 0.8) 0%, rgba(15, 23, 41, 0.6) 100%);
+  border-top: 1px solid rgba(255, 62, 95, 0.15);
+}
+
+.ad-checkbox {
+  color: #dfeaff;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.ad-checkbox:hover {
+  color: #fff;
+}
+
+.ad-checkbox input {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  accent-color: #ff3e5f;
+}
+
+.ad-buttons {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.ad-close {
+  background: transparent;
+  color: #fff;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.ad-close:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.ad-close:active {
+  transform: translateY(0);
+}
+
+.ad-close.primary {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff3e5f 100%);
+  border: none;
+  box-shadow: 0 6px 20px rgba(255, 62, 95, 0.3);
+}
+
+.ad-close.primary:hover {
+  box-shadow: 0 8px 25px rgba(255, 62, 95, 0.4);
+  transform: translateY(-2px);
+}
 
 @media (max-width: 720px) {
-  .ad-inner { max-width: 100%; }
-  .ad-controls { flex-direction: column; align-items:stretch }
-}
+  .ad-inner {
+    max-width: 100%;
+    border-radius: 12px;
+  }
+
+  .ad-controls {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem;
+  }
+
+  .ad-checkbox {
+    font-size: 0.9rem;
+  }
+
+  .ad-buttons {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .ad-close {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+  }}

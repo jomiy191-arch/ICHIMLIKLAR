@@ -24,8 +24,9 @@ export const useCart = () => {
   const addToCart = useCartStore((state) => state.addToCart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
   const toggleLike = useCartStore((state) => state.toggleLike);
+  const updateCartQuantity = useCartStore((state) => state.updateCartQuantity);
   const lastAddedAt = useCartStore((state) => state.lastAddedAt);
-  return { cartItems, likedItems, addToCart, removeFromCart, toggleLike, lastAddedAt };
+  return { cartItems, likedItems, addToCart, removeFromCart, toggleLike, updateCartQuantity, lastAddedAt, cart: cartItems };
 };
 
 export const useAuth = () => {
