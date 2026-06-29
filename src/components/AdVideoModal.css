@@ -82,14 +82,14 @@
 }
 
 .ad-checkbox:hover {
-  color: #742828;
+  color: #fff;
 }
 
 .ad-checkbox input {
   cursor: pointer;
   width: 18px;
   height: 18px;
-  accent-color: #e2dcdd;
+  accent-color: #ff3e5f;
 }
 
 .ad-buttons {
@@ -99,7 +99,7 @@
 
 .ad-close {
   background: transparent;
-  color: #c34b4b;
+  color: #fff;
   padding: 0.7rem 1.2rem;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.15);
