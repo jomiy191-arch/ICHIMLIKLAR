@@ -67,7 +67,7 @@
   justify-content: space-between;
   gap: 1rem;
   background: linear-gradient(135deg, rgba(106, 133, 187, 0.8) 0%, rgba(15, 23, 41, 0.6) 100%);
-  border-top: 1px solid rgba(255, 62, 95, 0.15);
+  border-top: 1px solid rgba(142, 47, 63, 0.15);
 }
 
 .ad-checkbox {
