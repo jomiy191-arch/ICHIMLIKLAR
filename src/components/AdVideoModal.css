@@ -120,7 +120,7 @@
 }
 
 .ad-close.primary {
-  background: linear-gradient(135deg, #ff6b6b 0%, #ff3e5f 100%);
+  background: linear-gradient(135deg, #b88c8c 0%, #ff3e5f 100%);
   border: none;
   box-shadow: 0 6px 20px rgba(255, 62, 95, 0.3);
 }
